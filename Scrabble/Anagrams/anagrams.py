@@ -1,28 +1,28 @@
 from collections import defaultdict
 import random
 
-#opening my text file of words
-with open('all_words.txt') as f:
-    content = f.read()
+# #opening my text file of words
+# with open('all_words.txt') as f:
+#     content = f.read()
 
-new_lines = content.split(' ')
+# new_lines = content.split(' ')
 
-# opening my fiels so I can rewrite them
-open('two_letters.txt', 'w')
-open('seven_letters.txt', 'w')
-open('three_letters.txt', 'w')
+# # opening my fiels so I can rewrite them
+# open('two_letters.txt', 'w')
+# open('seven_letters.txt', 'w')
+# open('three_letters.txt', 'w')
 
-# getting only the 2, 3, and 7 letter words
-for line in new_lines:
-    if len(line) == 2:
-        with open('two_letters.txt', 'a') as f:
-            f.write(line + '\n')
-    if len(line) == 3:
-        with open('three_letters.txt', 'a') as f:
-            f.write(line + '\n')
-    if len(line) == 7:
-        with open('seven_letters.txt', 'a') as f:
-            f.write(line + '\n')
+# # getting only the 2, 3, and 7 letter words
+# for line in new_lines:
+#     if len(line) == 2:
+#         with open('two_letters.txt', 'a') as f:
+#             f.write(line + '\n')
+#     if len(line) == 3:
+#         with open('three_letters.txt', 'a') as f:
+#             f.write(line + '\n')
+#     if len(line) == 7:
+#         with open('seven_letters.txt', 'a') as f:
+#             f.write(line + '\n')
 
 # opening 7 letter file
 with open('seven_letters.txt') as f:
