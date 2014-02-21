@@ -39,28 +39,32 @@ def scrabble_twos():
     for c in combos[0:25]:
         random_item = random.choice(combos)
         text = ''.join(random_item)
-        answer = raw_input(text + '\n')
+        answer = raw_input(text + '\n').lower()
 
 #answers right or wrong
-        if answer == 'y' and any(text in w for w in words):
+        if answer[0] == 'y' and any(text in w for w in words):
             print "Correct, " + text + " is a word! \n---"
             correct_answers = correct_answers + 1
             words_found = words_found + text + '\n'
-        elif answer == 'n' and any(text in w for w in words):
+        elif answer[0] == 'n' and any(text in w for w in words):
             print "Nope, " + text + " is a word! \n---"
             incorrect_answers = incorrect_answers + 1
             are_words = are_words + text + '\n'
-        elif answer == 'n' and any(text not in w for w in words):
+        elif answer[0] == 'n' and any(text not in w for w in words):
             print "Correct, " + text + " is not a word! \n---"
             correct_answers = correct_answers + 1
-        elif answer == 'y' and any(text not in w for w in words):
+        elif answer[0] == 'y' and any(text not in w for w in words):
             print "Nope, " + text + " is not a word! \n---"
             incorrect_answers = incorrect_answers + 1
             not_words = not_words + text + '\n'
         elif answer == "quit":
             print "---\nCorrect: ", correct_answers
             print "Incorrect: ", incorrect_answers
-            pct_correct = str(int(round(100*float(correct_answers)/float(correct_answers+incorrect_answers), 0)))+"%"
+# Prevent exception if user types quit without answering any question                    
+            try:
+                pct_correct = str(int(round(100*float(correct_answers)/float(correct_answers+incorrect_answers), 0)))+"%"
+            except:
+                pct_correct = "n/a" 
             print "Percent correct: ", pct_correct
             if words_found != '':
                 print "\nYou correctly found:\n", words_found
