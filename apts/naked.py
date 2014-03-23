@@ -2,10 +2,17 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import datetime
+import _mysql
+import os
 
 sttime = datetime.datetime.now()
+
+#Connecting
+conn = _mysql.connect(host="localhost",user="anfuller",passwd="oron",db="testing")
+conn.query("""delete from naked""")
+
 #headers
-headers = ['href', 'lat', 'lon', 'lines', 'station', 'distance', \
+headers = ['href', 'lat', 'lon', 'sublines', 'station', 'distance', \
           'google', 'time', 'apttype', 'area', 'borough', 'price', \
           'price2', 'bedrooms', 'listed', 'updated', 'avail', 'building', \
           'feet', 'amenslist', 'laundry', 'unitlaundry', 'gym', 'dishwasher', 'offers', 'nofee']
@@ -14,7 +21,7 @@ with open('output/naked.txt', 'w') as f:
     f.write('|'.join(headers) + '\n')
 
 #list of page numbers
-for x in range (1,50):
+for x in range (1,2):
     print x
     #hitting the naked homepage
     links = ['http://www.nakedapartments.com/renter/listings/search?aids=3&amids=3&baths=&broker_id=&max_rent=2300&min_rent=&move_date=&nids=23%2C211%2C6%2C21%2C203%2C191%2C18%2C24%2C76%2C205%2C10%2C14%2C5%2C93%2C206%2C22%2C17%2C13%2C155%2C16%2C72%2C9%2C20%2C19%2C73%2C7%2C208%2C209%2C192%2C8%2C74%2C210%2C11%2C4%2C3%2C12%2C36%2C30%2C37%2C31%2C38%2C213%2C32%2C33%2C34%2C39%2C43%2C127%2C27%2C28%2C88%2C40%2C35%2C44%2C47%2C48%2C49%2C50%2C113%2C115%2C51%2C52&page=' + str(x) + '&pets=', 'http://www.nakedapartments.com/renter/listings/search?aids=3&amids=14&baths=&broker_id=&max_rent=2300&min_rent=&move_date=&nids=23%2C211%2C6%2C21%2C203%2C191%2C18%2C24%2C76%2C205%2C10%2C14%2C5%2C93%2C206%2C22%2C17%2C13%2C155%2C16%2C72%2C9%2C20%2C19%2C73%2C7%2C208%2C209%2C192%2C8%2C74%2C210%2C11%2C4%2C3%2C12%2C36%2C30%2C37%2C31%2C38%2C213%2C32%2C33%2C34%2C39%2C43%2C127%2C27%2C28%2C88%2C40%2C35%2C44%2C47%2C48%2C49%2C50%2C113%2C115%2C51%2C52&page=' + str(x) + '&pets=']
@@ -80,13 +87,13 @@ for x in range (1,50):
                             ovr = soup2.find('table', {'id': 'listingOverview'})
                             rows = ovr.findAll('tr')
                             #setting our attributes to blank since some will not be available for every listing
-                            price2 = ''
-                            bedrooms = ''
-                            listed = ''
-                            updated = ''
-                            availal = ''
-                            building = ''
-                            feet = ''
+                            price2 = '\N'
+                            bedrooms = '\N'
+                            listed = '\N'
+                            updated = '\N'
+                            availal = '\N'
+                            building = '\N'
+                            feet = '\N'
                             #looping through the rows in our apt. attribute tables
                             for row in rows:
                                 tds = row.findAll('td')
@@ -112,11 +119,11 @@ for x in range (1,50):
                             #amenities
                             amenslist = []
                             #individual amens
-                            diswhasher = ''
-                            gym = ''
-                            laundry = ''
-                            unitlaundry = ''
-                            nofee = ''
+                            diswhasher = '\N'
+                            gym = '\N'
+                            laundry = '\N'
+                            unitlaundry = '\N'
+                            nofee = '\N'
                             amenities = soup2.find('div', {'class': 'amens'})
                             amens = re.search('<div class="amens">(.*)</div>', str(amenities), re.S)
                             try:
@@ -135,7 +142,7 @@ for x in range (1,50):
                                     unitlaundry = 'x'
                                 amenslist = ','.join(amenslist)
                             except Exception, e:
-                                amenslist = ''
+                                amenslist = '\N'
                             #offers
                             offers = []
                             offs = soup2.find('div', {'id': 'specialOffers'})
@@ -145,14 +152,24 @@ for x in range (1,50):
                                 offers.append(offer)
                             if 'No fee' in offers:
                                 nofee = 'x'
-                            offers = ','.join(offers)
+                            if offers != []:
+                                offerslist = ','.join(offers)
+                            else:
+                                offerslist = '\N'
+                            record = (href, lat, lon, lines, station, str(distance), google, time, apttype, area, borough, price, price2, bedrooms, listed, updated, avail, building, feet, amenslist, laundry, unitlaundry, gym, dishwasher, offerslist, nofee)    
                             #filtering out records < 550 square feet but including unknowns
-                            if (feet == '' or int(feet) >= 550) and station != '96 St' and station != 'Roosevelt Island' and station != '103 St' and station != '110 St' and station != '125 St' and station != 'Cathedral Pkwy' and station != 'Cathedral Pkwy (110 St)' and station != 'Central Park North (110 St)':
-                                record = (href, lat, lon, lines, station, str(distance), google, time, apttype, area, borough, price, price2, bedrooms, listed, updated, avail, building, feet, amenslist, laundry, unitlaundry, gym, dishwasher, offers, nofee)
+                            if (feet == '\N' or int(feet) >= 550) and station != '96 St' and station != 'Roosevelt Island' and station != '103 St' and station != '110 St' and station != '125 St' and station != 'Cathedral Pkwy' and station != 'Cathedral Pkwy (110 St)' and station != 'Central Park North (110 St)':
+                                record = (href, lat, lon, lines, station, str(distance), google, time, apttype, area, borough, price, price2, bedrooms, listed, updated, avail, building, feet, amenslist, laundry, unitlaundry, gym, dishwasher, offerslist, nofee)
                                 with open('output/naked.txt', 'a+b') as f:
                                     f.write('|'.join(record) + '\n')
         except Exception, e:
             pass
+
+conn.query("""LOAD DATA INFILE \'""" + os.getcwd() + '/' + """/output/naked.txt\' INTO TABLE naked
+              FIELDS TERMINATED BY '|'
+              LINES TERMINATED BY '\n'
+              IGNORE 1 LINES;""")
+conn.close()
 
 endtime = datetime.datetime.now()
 runtime = endtime - sttime
