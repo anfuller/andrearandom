@@ -8,8 +8,8 @@ import os
 sttime = datetime.datetime.now()
 
 #Connecting
-# conn = _mysql.connect(host="localhost",user="anfuller",passwd="oron",db="testing")
-conn = _mysql.connect(host="ec2-54-85-125-152.compute-1.amazonaws.com",user="anfuller",passwd="oron",db="testing")
+conn = _mysql.connect(host="localhost",user="anfuller",passwd="oron",db="testing")
+# conn = _mysql.connect(host="ec2-54-85-125-152.compute-1.amazonaws.com",user="anfuller",passwd="oron",db="testing")
 conn.query("""delete from naked""")
 
 #headers
