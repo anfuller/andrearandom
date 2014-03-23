@@ -10,7 +10,7 @@ headers = ['href', 'lat', 'lon', 'lines', 'station', 'distance', \
           'price2', 'bedrooms', 'listed', 'updated', 'avail', 'building', \
           'feet', 'amenslist', 'laundry', 'unitlaundry', 'gym', 'dishwasher', 'offers', 'nofee']
 
-with open('naked.txt', 'w') as f:
+with open('output/naked.txt', 'w') as f:
     f.write('|'.join(headers) + '\n')
 
 #list of page numbers
@@ -149,7 +149,7 @@ for x in range (1,50):
                             #filtering out records < 550 square feet but including unknowns
                             if (feet == '' or int(feet) >= 550) and station != '96 St' and station != 'Roosevelt Island' and station != '103 St' and station != '110 St' and station != '125 St' and station != 'Cathedral Pkwy' and station != 'Cathedral Pkwy (110 St)' and station != 'Central Park North (110 St)':
                                 record = (href, lat, lon, lines, station, str(distance), google, time, apttype, area, borough, price, price2, bedrooms, listed, updated, avail, building, feet, amenslist, laundry, unitlaundry, gym, dishwasher, offers, nofee)
-                                with open('naked.txt', 'a+b') as f:
+                                with open('output/naked.txt', 'a+b') as f:
                                     f.write('|'.join(record) + '\n')
         except Exception, e:
             pass
