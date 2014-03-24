@@ -38,6 +38,7 @@ for x in range (1,3):
             for l in listings:
                 #getting the link ot individual listings
                 href = l.find('a')
+                print href
                 href = href.get('href')
                 r2 = requests.get(href)
                 soup2 = BeautifulSoup(r2.content)
