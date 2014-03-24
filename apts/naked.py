@@ -33,6 +33,7 @@ for x in range (1,3):
 
             #getting all the entries on that page
             listings = soup.findAll('div', {'class': 'listing-details floatLeft'})
+            print listings
 
             #looping through all the listings
             for l in listings:
