@@ -39,10 +39,10 @@ for x in range (1,2):
 
             #looping through all the listings
             for l in listings:
+                print str(l) + '\nxxxx\n'
                 #getting the link ot individual listings
                 href = l.find('a')
                 href = href.get('href')
-                print href
                 r2 = requests.get(href)
                 soup2 = BeautifulSoup(r2.content)
                 #getting the lat/lon of each listing
