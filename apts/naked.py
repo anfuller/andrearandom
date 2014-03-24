@@ -33,11 +33,10 @@ for x in range (1,3):
 
             #getting all the entries on that page
             listings = soup.findAll('div', {'class': 'listing-details floatLeft'})
-            print listings
 
             #looping through all the listings
-            for l in listings[3:7]:
-                print l
+            for l in listings:
+                print l + '\n' + 'xxxx'
                 #getting the link ot individual listings
                 href = l.find('a')
                 print href
