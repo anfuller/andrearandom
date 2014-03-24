@@ -36,7 +36,7 @@ for x in range (1,3):
             print listings
 
             #looping through all the listings
-            for l in listings(3,7):
+            for l in listings[3:7]:
                 print l
                 #getting the link ot individual listings
                 href = l.find('a')
