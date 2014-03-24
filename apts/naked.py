@@ -27,7 +27,6 @@ for x in range (1,3):
     #hitting the naked homepage
     links = ['http://www.nakedapartments.com/renter/listings/search?aids=3&amids=3&baths=&broker_id=&max_rent=2300&min_rent=&move_date=&nids=23%2C211%2C6%2C21%2C203%2C191%2C18%2C24%2C76%2C205%2C10%2C14%2C5%2C93%2C206%2C22%2C17%2C13%2C155%2C16%2C72%2C9%2C20%2C19%2C73%2C7%2C208%2C209%2C192%2C8%2C74%2C210%2C11%2C4%2C3%2C12%2C36%2C30%2C37%2C31%2C38%2C213%2C32%2C33%2C34%2C39%2C43%2C127%2C27%2C28%2C88%2C40%2C35%2C44%2C47%2C48%2C49%2C50%2C113%2C115%2C51%2C52&page=' + str(x) + '&pets=', 'http://www.nakedapartments.com/renter/listings/search?aids=3&amids=14&baths=&broker_id=&max_rent=2300&min_rent=&move_date=&nids=23%2C211%2C6%2C21%2C203%2C191%2C18%2C24%2C76%2C205%2C10%2C14%2C5%2C93%2C206%2C22%2C17%2C13%2C155%2C16%2C72%2C9%2C20%2C19%2C73%2C7%2C208%2C209%2C192%2C8%2C74%2C210%2C11%2C4%2C3%2C12%2C36%2C30%2C37%2C31%2C38%2C213%2C32%2C33%2C34%2C39%2C43%2C127%2C27%2C28%2C88%2C40%2C35%2C44%2C47%2C48%2C49%2C50%2C113%2C115%2C51%2C52&page=' + str(x) + '&pets=']
     for link in links:
-        count = 0
         try:
             r = requests.get(link)
             soup = BeautifulSoup(r.content)
@@ -37,8 +36,6 @@ for x in range (1,3):
 
             #looping through all the listings
             for l in listings(3,7):
-                count == count + 1
-                print count
                 print l
                 #getting the link ot individual listings
                 href = l.find('a')
