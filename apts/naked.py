@@ -42,18 +42,18 @@ for x in range (1,2):
                 #getting the link ot individual listings
                 href = l.find('a')
                 href = href.get('href')
-                print href
-                # r2 = requests.get(href)
-                # soup2 = BeautifulSoup(r2.content)
-                # # getting the lat/lon of each listing
-                # lat = soup2.find('meta', {'name': 'og:latitude'}).get('content')
-                # lon = soup2.find('meta', {'name': 'og:longitude'}).get('content')
-                # # getting the distance to the closest subway
-                # transit = soup2.find('div', {'class': 'transportation'})
-                # if transit != None:
-                #     li = transit.find('li')
-                #     #nearest subway line
-                #     lines = []
+                r2 = requests.get(href)
+                soup2 = BeautifulSoup(r2.content)
+                # getting the lat/lon of each listing
+                lat = soup2.find('meta', {'name': 'og:latitude'}).get('content')
+                lon = soup2.find('meta', {'name': 'og:longitude'}).get('content')
+                # getting the distance to the closest subway
+                transit = soup2.find('div', {'class': 'transportation'})
+                if transit != None:
+                    print 'x'
+                    li = transit.find('li')
+                    #nearest subway line
+                    lines = []
                 #     spans = li.findAll('span')
                 #     for span in spans:
                 #         line = span.string
