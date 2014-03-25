@@ -9,12 +9,12 @@ sttime = datetime.datetime.now()
 
 #Connecting
 #conn = _mysql.connect(host="localhost",user="anfuller",passwd="oron",db="testing")
-conn = _mysql.connect(host="localhost",user="anfuller",passwd="oron",db="testing")
+conn = _mysql.connect(host="ec2-54-85-125-152.compute-1.amazonaws.com",user="anfuller",passwd="oron",db="testing")
 
 # rows = conn.store_result()
 # rows = rows.fetch_row(maxrows=0)
 
-conn.query("""delete from naked""")
+conn.query("""select * from naked""")
 
 #headers
 headers = ['href', 'lat', 'lon', 'sublines', 'station', 'distance', \
@@ -184,10 +184,10 @@ for x in range (1,2):
         except Exception, e:
             pass
 
-conn.query("""LOAD DATA INFILE \'""" + os.getcwd() + '/' + """/output/naked.txt\' INTO TABLE naked
-              FIELDS TERMINATED BY '|'
-              LINES TERMINATED BY '\n'
-              IGNORE 1 LINES;""")
+# conn.query("""LOAD DATA INFILE \'""" + os.getcwd() + '/' + """/output/naked.txt\' INTO TABLE naked
+#               FIELDS TERMINATED BY '|'
+#               LINES TERMINATED BY '\n'
+#               IGNORE 1 LINES;""")
 conn.close()
 
 endtime = datetime.datetime.now()
