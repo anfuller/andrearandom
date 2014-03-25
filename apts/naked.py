@@ -77,9 +77,9 @@ for x in range (1,2):
                         time = duration.string
                         time = re.search('(.*?) min',time)
                         time = time.group(1)
+                        print time
                         #if the commute time is < 35 minutes, continue
-                        if float(time) <= 35:
-                            print time
+                        # if float(time) <= 35:
                 #             #getting our header info (apt location, type, price) from the listing
                 #             header = soup2.find('h1')
                 #             header = header.string.split(',')
