@@ -9,21 +9,21 @@ sttime = datetime.datetime.now()
 
 #Connecting
 #conn = _mysql.connect(host="localhost",user="anfuller",passwd="oron",db="testing")
-conn = _mysql.connect(host="ec2-54-85-125-152.compute-1.amazonaws.com",user="anfuller",passwd="oron",db="testing")
+# conn = _mysql.connect(host="ec2-54-85-125-152.compute-1.amazonaws.com",user="anfuller",passwd="oron",db="testing")
 
 # rows = conn.store_result()
 # rows = rows.fetch_row(maxrows=0)
 
-conn.query("""delete from naked""")
+# conn.query("""delete from naked""")
 
-#headers
-headers = ['href', 'lat', 'lon', 'sublines', 'station', 'distance', \
-          'google', 'time', 'apttype', 'address', 'area', 'borough', 'price', \
-          'price2', 'bedrooms', 'listed', 'updated', 'avail', 'building', \
-          'feet', 'amenslist', 'laundry', 'unitlaundry', 'gym', 'dishwasher', 'offerslist', 'nofee']
+# #headers
+# headers = ['href', 'lat', 'lon', 'sublines', 'station', 'distance', \
+#           'google', 'time', 'apttype', 'address', 'area', 'borough', 'price', \
+#           'price2', 'bedrooms', 'listed', 'updated', 'avail', 'building', \
+#           'feet', 'amenslist', 'laundry', 'unitlaundry', 'gym', 'dishwasher', 'offerslist', 'nofee']
 
-with open('output/naked.txt', 'w') as f:
-    f.write('|'.join(headers) + '\n')
+# with open('output/naked.txt', 'w') as f:
+#     f.write('|'.join(headers) + '\n')
 
 #list of page numbers
 for x in range (1,2):
@@ -175,16 +175,17 @@ for x in range (1,2):
                             record = (href, lat, lon, lines, station, str(distance), google, time, apttype, address, area, borough, price, price2, bedrooms, listed, updated, avail, building, feet, amenslist, laundry, unitlaundry, gym, dishwasher, offerslist, nofee)    
                             #filtering out records < 550 square feet but including unknowns
                             if (feet == '\N' or int(feet) >= 550) and station != '96 St' and station != 'Roosevelt Island' and station != '103 St' and station != '110 St' and station != '125 St' and station != 'Cathedral Pkwy' and station != 'Cathedral Pkwy (110 St)' and station != 'Central Park North (110 St)':
-                                with open('output/naked.txt', 'a+b') as f:
-                                    f.write('|'.join(record) + '\n')
+                                print record[1]
+                                # with open('output/naked.txt', 'a+b') as f:
+                                #     f.write('|'.join(record) + '\n')
         except Exception, e:
             pass
 
-conn.query("""LOAD DATA INFILE \'""" + os.getcwd() + '/' + """/output/naked.txt\' INTO TABLE naked
-              FIELDS TERMINATED BY '|'
-              LINES TERMINATED BY '\n'
-              IGNORE 1 LINES;""")
-conn.close()
+# conn.query("""LOAD DATA INFILE \'""" + os.getcwd() + '/' + """/output/naked.txt\' INTO TABLE naked
+#               FIELDS TERMINATED BY '|'
+#               LINES TERMINATED BY '\n'
+#               IGNORE 1 LINES;""")
+# conn.close()
 
 endtime = datetime.datetime.now()
 runtime = endtime - sttime
