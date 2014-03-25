@@ -184,10 +184,10 @@ for x in range (1,2):
         except Exception, e:
             pass
 
-conn.query("""LOAD DATA INFILE \'""" + os.getcwd() + '/' + """/output/naked.txt\' INTO TABLE naked
-              FIELDS TERMINATED BY '|'
-              LINES TERMINATED BY '\n'
-              IGNORE 1 LINES;""")
+# conn.query("""LOAD DATA INFILE \'""" + os.getcwd() + '/' + """/output/naked.txt\' INTO TABLE naked
+#               FIELDS TERMINATED BY '|'
+#               LINES TERMINATED BY '\n'
+#               IGNORE 1 LINES;""")
 conn.close()
 
 endtime = datetime.datetime.now()
