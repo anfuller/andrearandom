@@ -68,9 +68,9 @@ for x in range (1,2):
                     #filtering out apts > .45 miles from a subway
                     if distance <= .45:
                         #hitting up google with the lat/lon of our apartment
-                        google = 'https://www.google.com/maps/dir/Wall+Street+Journal,+1211+Avenue+of+the+Americas,+New+York,+NY+10036/%27%27/data=!3m1!4b1!4m12!4m11!1m5!1m1!1s0x89c258ff6b2dac81:0x8579374f9050c674!2m2!1d' + lon + '!2d' + lat + '!1m3!2m2!1d' + lon + '!2d' + lat + '!3e3'
-                        print google
+                        google = 'http://www.google.com/maps/dir/Wall+Street+Journal,+1211+Avenue+of+the+Americas,+New+York,+NY+10036/%27%27/data=!3m1!4b1!4m12!4m11!1m5!1m1!1s0x89c258ff6b2dac81:0x8579374f9050c674!2m2!1d' + lon + '!2d' + lat + '!1m3!2m2!1d' + lon + '!2d' + lat + '!3e3'
                         r3 = requests.get(google)
+                        print r3.content
                         soup3 = BeautifulSoup(r3.content)
                         #getting the shortest route via subway + duration
                         # route = soup3.find('li', {'id': 'altroute_0'})
