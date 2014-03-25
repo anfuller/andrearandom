@@ -8,8 +8,8 @@ import os
 sttime = datetime.datetime.now()
 
 #Connecting
-#conn = _mysql.connect(host="localhost",user="anfuller",passwd="oron",db="testing")
-conn = _mysql.connect(host="ec2-54-85-125-152.compute-1.amazonaws.com",user="anfuller",passwd="oron",db="testing")
+conn = _mysql.connect(host="localhost",user="anfuller",passwd="oron",db="testing")
+#conn = _mysql.connect(host="ec2-54-85-125-152.compute-1.amazonaws.com",user="anfuller",passwd="oron",db="testing")
 
 # rows = conn.store_result()
 # rows = rows.fetch_row(maxrows=0)
@@ -69,19 +69,18 @@ for x in range (1,2):
                     if distance <= .45:
                         google = '\N'
                         time = '\N'
-                        # #hitting up google with the lat/lon of our apartment
-                        # google = 'http://www.google.com/maps/dir/Wall+Street+Journal,+1211+Avenue+of+the+Americas,+New+York,+NY+10036/%27%27/data=!3m1!4b1!4m12!4m11!1m5!1m1!1s0x89c258ff6b2dac81:0x8579374f9050c674!2m2!1d' + lon + '!2d' + lat + '!1m3!2m2!1d' + lon + '!2d' + lat + '!3e3'
-                        # r3 = requests.get(google)
-                        # soup3 = BeautifulSoup(r3.content)
-                        # #getting the shortest route via subway + duration
-                        # route = soup3.find('li', {'id': 'altroute_0'})
-                        # duration = route.find('div', {'class': 'altroute-rcol altroute-info'})
-                        # time = duration.string
-                        # time = re.search('(.*?) min',time)
-                        # time = time.group(1)
-                        # #if the commute time is < 35 minutes, continue
-                        # if float(time) <= 35:
-                        if distance <= .45:
+                        #hitting up google with the lat/lon of our apartment
+                        google = 'http://www.google.com/maps/dir/Wall+Street+Journal,+1211+Avenue+of+the+Americas,+New+York,+NY+10036/%27%27/data=!3m1!4b1!4m12!4m11!1m5!1m1!1s0x89c258ff6b2dac81:0x8579374f9050c674!2m2!1d' + lon + '!2d' + lat + '!1m3!2m2!1d' + lon + '!2d' + lat + '!3e3'
+                        r3 = requests.get(google)
+                        soup3 = BeautifulSoup(r3.content)
+                        #getting the shortest route via subway + duration
+                        route = soup3.find('li', {'id': 'altroute_0'})
+                        duration = route.find('div', {'class': 'altroute-rcol altroute-info'})
+                        time = duration.string
+                        time = re.search('(.*?) min',time)
+                        time = time.group(1)
+                        #if the commute time is < 35 minutes, continue
+                        if float(time) <= 35:
                             #getting our header info (apt location, type, price) from the listing
                             header = soup2.find('h1')
                             header = header.string.split(',')
@@ -184,10 +183,10 @@ for x in range (1,2):
         except Exception, e:
             pass
 
-# conn.query("""LOAD DATA INFILE \'""" + os.getcwd() + '/' + """/output/naked.txt\' INTO TABLE naked
-#               FIELDS TERMINATED BY '|'
-#               LINES TERMINATED BY '\n'
-#               IGNORE 1 LINES;""")
+conn.query("""LOAD DATA INFILE \'""" + os.getcwd() + '/' + """/output/naked.txt\' INTO TABLE naked
+              FIELDS TERMINATED BY '|'
+              LINES TERMINATED BY '\n'
+              IGNORE 1 LINES;""")
 conn.close()
 
 endtime = datetime.datetime.now()
