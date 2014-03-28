@@ -1,0 +1,72 @@
+address|price|laundry
+401 E. 73rd St.|$1,800|no
+310 E. 90th St.|$1,850|no
+308 E. 78th St.|$1,850|no
+434 E. 83rd St.|$1,850|yes
+1742 First Ave|$1,850|yes
+421 E. 81st St.|$1,859|yes
+1448 First Ave|$1,875|no
+520 E. 79th St.|$1,875|no
+542 E. 79th St.|$1,895|yes
+209 E. 88th St.|$1,900|yes
+403 E. 69th St.|$1,900(unf) | $1,900(f)|no
+425 E. 73rd St.|$1,900|no
+320 E. 49th St.|$1,900|no
+436 E. 76th St.|$1,900|yes
+232 E. 80th St.|$1,925|no
+444 E. 81st St.|$1,925|yes
+333 E. 95th St.|$1,950|yes
+323 E. 85th St.|$1,950|no
+305 E. 95th St.|$1,988|yes
+307 E. 85th St.|$1,995|no
+1448 First Ave|$1,995|no
+355 E. 88th St.|$1,995|no
+332 E. 77th St.|$2,000|no
+1702 Second Ave|$2,000|no
+330 E. 90th St.|$2,000|yes
+222 E. 84th St.|$2,000|yes
+141 E. 62nd St.|$2,000|no
+320 E. 91st St.|$2,025|no
+301 E. 91st St.|$2,050|no
+265 E. 78th St.|$2,050|no
+137 E. 26th St.|$2,050|no
+326 E. 73rd St.|$2,075|no
+415 E. 80th St.|$2,095|yes
+163 E. 92nd St.|$2,095|yes
+434 E. 72nd St.|$2,095|no
+404 E. 63rd St.|$2,095|no
+242-244 E. 77th St.|$2,095|no
+519 E. 78th St.|$2,095|yes
+415 E. 80th St.|$2,100(unf) | $2,100(f)|yes
+301 E. 91st St.|$2,100|no
+207 E. 88th St.|$2,100|yes
+321 E. 91st St.|$2,150|no
+405 E. 69th St.|$2,150|yes
+501 E. 82nd St.|$2,150|no
+511 E. 78th St.|$2,150|no
+354 E. 51st St.|$2,150|no
+334 E. 77th St.|$2,150|no
+330 E. 73rd St.|$2,150|yes
+978 Second Ave|$2,150|no
+325 E. 78th St.|$2,150|yes
+320 E. 49th St.|$2,150|no
+1414 Third Ave|$2,177|no
+206 E. 25th St.|$2,195|yes
+328 E. 34th St.|$2,195|no
+300 E. 92nd St.|$2,195|no
+1488 First Ave|$2,195|no
+330 E. 77th St.|$2,195|yes
+521 E. 72nd St.|$2,195|yes
+300 E. 96th St.|$2,195|no
+11 E. 32nd St.|$2,200|yes
+325 E. 78th St.|$2,200|yes
+1700 York Ave|$2,200|yes
+452 E. 84th St.|$2,200|no
+1269 First Ave|$2,200|no
+326 E. 84th St.|$2,200|yes
+439 E. 84th St.|$2,200|no
+237 E. 79th St.|$2,200|yes
+174 E. 85th St.|$2,200|no
+797 Lexington Ave|$2,200|no
+797 Lexington Ave|$2,200|no
+551 Third Ave|$2,200|yes
